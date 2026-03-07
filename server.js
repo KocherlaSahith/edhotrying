@@ -1,5 +1,7 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+const cors = require('cors');
+require('dotenv').config();
 
 // MongoDB Atlas connection
 const uri = process.env.MONGODB_URI;
@@ -26,6 +28,7 @@ async function connectToMongoDB() {
 
 // Create Express app
 const app = express();
+app.use(cors()); // Enable CORS for all origins
 app.use(express.json());
 
 // Read endpoint - Get all documents from a collection
